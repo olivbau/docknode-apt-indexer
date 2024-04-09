@@ -31,6 +31,7 @@ services:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres_user:postgres_password@db:5432/aptindexer
       HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres_user:postgres_password@db:5432/aptindexer
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey2
       HASURA_GRAPHQL_DEV_MODE: "false"
     networks:
       - docknode-apt-indexer
