@@ -14,8 +14,8 @@ services:
     restart: unless-stopped
     volumes:
       - db_indexer_data:/var/lib/postgresql/data
-    expose:
-      - 5432
+    ports:
+      - "127.0.0.1:5432:5432"
     environment:
       POSTGRES_USER: postgres_user
       POSTGRES_PASSWORD: postgres_password
