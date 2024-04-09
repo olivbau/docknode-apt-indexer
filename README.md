@@ -46,7 +46,9 @@ ufw enable
 ```bash
 docker compose pull
 docker compose up -d
-cargo run --manifest-path ./aptos-indexer-processors/rust/processor/Cargo.toml --release -- -c ./config.yaml
+
+cd aptos-indexer-processors/rust/processor/
+cargo run --release -- -c ./config.yaml
 
 docker compose down
 ```
