@@ -5,7 +5,11 @@
 0. VPS config (optional)
 
 ```bash
-apt update && apt upgrade -y && apt install -y git
+apt update && apt upgrade -y && apt install -y git build-essential
+
+# install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+. "$HOME/.cargo/env"
 
 # install docker https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 ```
@@ -13,7 +17,7 @@ apt update && apt upgrade -y && apt install -y git
 1. Clone the repository and
 
 ```bash
-git clone https://github.com/olivbau/docknode-apt-indexer.git
+git clone --recursive https://github.com/olivbau/docknode-apt-indexer.git
 cd docknode-apt-indexer
 ```
 
@@ -33,7 +37,7 @@ nano .env
 3. Setup UFW
 
 ```bash
-ufw allow ssh && ufw deny 8080
+ufw allow ssh && ufw deny 5432
 ufw enable
 ```
 
