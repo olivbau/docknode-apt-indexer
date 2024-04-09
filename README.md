@@ -5,7 +5,7 @@
 0. VPS config (optional)
 
 ```bash
-apt update && apt upgrade -y && apt install -y git build-essential pkg-config libssl-dev libpq-dev
+apt update && apt upgrade -y && apt install -y git build-essential pkg-config libssl-dev libpq-dev screen
 
 # install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -47,8 +47,14 @@ ufw enable
 docker compose pull
 docker compose up -d
 
+screen -S apt-processor
 cd aptos-indexer-processors/rust/processor/
-cargo run --release -- -c ./config.yaml
+while true; do cargo run --release -- -c ../../../config.yaml && break; done
+# CTRL+A+D
+
+
+# Attach to a screen session
+screen -r apt-processor
 
 docker compose down
 ```
