@@ -1,0 +1,3 @@
+[submodule "aptos-indexer-processors"]
+	path = aptos-indexer-processors
+	url = https://github.com/aptos-labs/aptos-indexer-processors
