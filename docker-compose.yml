@@ -3,16 +3,17 @@ networks:
     driver: bridge
 
 volumes:
-  db_data: {}
+  db_indexer_data: {}
+  db_hasura_data: {}
   caddy_data: {}
   caddy_config: {}
 
 services:
-  db:
+  dbindexer:
     image: postgres:latest
     restart: unless-stopped
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - db_indexer_data:/var/lib/postgresql/data
     expose:
       - 5432
     environment:
@@ -22,14 +23,28 @@ services:
     networks:
       - docknode-apt-indexer
 
+  dbhasura:
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - db_hasura_data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    environment:
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_DB: hasura
+    networks:
+      - docknode-apt-indexer
+
   graphqlengine:
     image: hasura/graphql-engine:latest
     ports:
       - 8080:8080
     restart: always
     environment:
-      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres_user:postgres_password@db:5432/aptindexer
-      # HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres_user:postgres_password@db:5432/hasura
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres_user:postgres_password@dbindexer:5432/aptindexer
+      HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres_user:postgres_password@dbhasura:5432/hasura
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
       HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey2
       HASURA_GRAPHQL_DEV_MODE: "false"
