@@ -1,5 +1,3 @@
-version: "3.8"
-
 networks:
   docknode-apt-indexer:
     driver: bridge
@@ -38,4 +36,4 @@ services:
     expose:
       - 9100
     networks:
-      - docknode-apt
+      - docknode-apt-indexer
