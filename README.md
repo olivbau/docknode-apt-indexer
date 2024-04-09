@@ -5,7 +5,7 @@
 0. VPS config (optional)
 
 ```bash
-apt update && apt upgrade -y && apt install -y git build-essential
+apt update && apt upgrade -y && apt install -y git build-essential pkg-config libssl-dev libpq-dev
 
 # install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -46,5 +46,7 @@ ufw enable
 ```bash
 docker compose pull
 docker compose up -d
+cargo run --manifest-path ./aptos-indexer-processors/rust/processor/Cargo.toml --release -- -c ./config.yaml
+
 docker compose down
 ```

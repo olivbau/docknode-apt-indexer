@@ -4,6 +4,6 @@ server_config:
     type: default_processor
   indexer_grpc_data_service_address: grpc.mainnet.aptoslabs.com:443
   auth_token: aptoslabs_5RaWA8h8CgM_JPzceAAN1HDKFZUB4ZhysdtV7Z54cjtv2
-  postgres_connection_string: postgresql://postgres:postgres@localhost:5432/indexer
+  postgres_connection_string: postgresql://postgres_user:postgres_password@db:5432/aptindexer
   indexer_grpc_http2_ping_interval_in_secs: 60
   indexer_grpc_http2_ping_timeout_in_secs: 10
