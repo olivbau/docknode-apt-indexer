@@ -22,6 +22,19 @@ services:
     networks:
       - docknode-apt-indexer
 
+  graphqlengine:
+    image: hasura/graphql-engine:latest
+    ports:
+      - 8080:8080
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres_user:postgres_password@db:5432/aptindexer
+      HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres_user:postgres_password@db:5432/aptindexer
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      HASURA_GRAPHQL_DEV_MODE: "false"
+    networks:
+      - docknode-apt-indexer
+
   nodeexporter:
     image: prom/node-exporter:latest
     restart: unless-stopped
