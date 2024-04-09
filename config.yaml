@@ -2,7 +2,7 @@ health_check_port: 8084
 server_config:
   processor_config:
     type: default_processor
-  indexer_grpc_data_service_address: grpc.mainnet.aptoslabs.com:443
+  indexer_grpc_data_service_address: https://grpc.mainnet.aptoslabs.com
   auth_token: aptoslabs_5RaWA8h8CgM_JPzceAAN1HDKFZUB4ZhysdtV7Z54cjtv2
   postgres_connection_string: postgresql://postgres_user:postgres_password@localhost:5432/aptindexer
   indexer_grpc_http2_ping_interval_in_secs: 60
